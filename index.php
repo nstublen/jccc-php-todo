@@ -15,6 +15,11 @@ include ('inc/ui.php');
         <h1>ToDo App</h1>
     </header>
     <main>
+        <form>
+            <input type="text" placeholder="New item" name="description" autofocus />
+            <input type="date" name="due_date" />
+            <input type="button" value="Add" />
+        </form>
         <?php echoToDoList(); ?>
     </main>
 </body>

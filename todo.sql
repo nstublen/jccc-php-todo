@@ -1,0 +1,15 @@
+CREATE DATABASE todo;
+
+USE todo;
+
+CREATE TABLE items(
+  item_id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  created_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  completed BOOLEAN NOT NULL DEFAULT FALSE,
+  description VARCHAR(512) NOT NULL,
+  due_date DATETIME DEFAULT NULL,
+  FULLTEXT(description),
+  INDEX(created_date),
+  INDEX(completed),
+  INDEX(due_date)
+);

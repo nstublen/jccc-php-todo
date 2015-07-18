@@ -16,7 +16,7 @@ include ('inc/ui.php');
     </header>
     <main>
         <form>
-            <input type="text" placeholder="New item" name="description" autofocus />
+            <input type="text" placeholder="New task" name="description" autofocus />
             <input type="date" name="due_date" />
             <input type="button" value="Add" />
         </form>

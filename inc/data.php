@@ -10,12 +10,23 @@ include ('_credentials.php');
 
 $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_DATA);
 
+function deleteTask($task_id) {
+    global $dbc;
+
+    $q = 'DELETE FROM tasks WHERE task_id=?';
+    $stmt = mysqli_prepare($dbc, $q);
+    mysqli_stmt_bind_param($stmt, 'i', $task_id);
+    mysqli_stmt_execute($stmt);
+    $rows = mysqli_affected_rows($dbc);
+    mysqli_stmt_close($stmt);
+}
+
 function insertTask($description, $due_date) {
     global $dbc;
 
     $q = 'INSERT INTO tasks (description, due_date) VALUES (?, ?)';
     $stmt = mysqli_prepare($dbc, $q);
-    mysqli_stmt_bind_param($stmt, 'ss', $description, $due_date);
+    mysqli_stmt_bind_param($stmt, 'ss', $description, $due_date === "" ? NULL : $due_date);
     mysqli_stmt_execute($stmt);
     $rows = mysqli_affected_rows($dbc);
     mysqli_stmt_close($stmt);

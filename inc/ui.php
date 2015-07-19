@@ -1,12 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Neal
- * Date: 7/7/2015
- * Time: 11:32 PM
- */
 
 include_once ('data.php');
+
+function buildTaskHtml($task_id, $completed, $description, $due_date) {
+    $html = "<li id=\"task-$task_id\"><input class=\"completion-state\" type=\"checkbox\"";
+    $html .= " id=\"check-$task_id\"";
+    if ($completed) {
+        $html .= " checked";
+    }
+    $html .= "/><label for=\"check-$task_id\">$description</label> (<time>$due_date</time>)";
+    $html .= "<button class=\"delete-task\">Delete</button>";
+    $html .= "</li>";
+    return $html;
+}
 
 function echoToDoList() {
     $tasks = selectTasks("*");
@@ -16,11 +22,5 @@ function echoToDoList() {
 }
 
 function echoToDoListTask($task_id, $completed, $description, $due_date) {
-    $echo = "<li id=\"task-$task_id\"><input type=\"checkbox\"";
-    $echo .= " id=\"check-$task_id\"";
-    if ($completed) {
-        $echo .= " checked";
-    }
-    $echo .= "/><label for=\"check-$task_id\">$description</label> (<time>$due_date</time>)</li>";
-    echo $echo;
+    echo buildTaskHtml($task_id, $completed, $description, $due_date);
 }

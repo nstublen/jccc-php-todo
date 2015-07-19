@@ -8,6 +8,7 @@ include ('inc/ui.php');
 <head>
     <title>ToDo App</title>
     <link href="css/todo.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="js/todo.js"></script>
 </head>
 <body>
@@ -16,11 +17,13 @@ include ('inc/ui.php');
     </header>
     <main>
         <form>
-            <input type="text" placeholder="New task" name="description" autofocus />
-            <input type="date" name="due_date" />
-            <input type="button" value="Add" />
+            <input id="task-description" type="text" placeholder="New task" name="description" autofocus />
+            <input id="task-due-date" type="date" name="due_date" />
+            <input id="task-submit" type="button" value="Add" />
         </form>
-        <?php echoToDoList(); ?>
+        <ul id="task-list">
+            <?php echoToDoList(); ?>
+        </ul>
     </main>
 </body>
 </html>

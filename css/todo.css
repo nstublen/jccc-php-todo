@@ -1,0 +1,4 @@
+input:checked ~ label,
+input:checked ~ time {
+    text-decoration: line-through;
+}
